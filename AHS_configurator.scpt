@@ -62,7 +62,7 @@ if result = {button returned:"Change Name"} then
 	display dialog "Hold on while we take some inventory information.  This information will go into a text file on your desktop.  Just so you know, your Mac's name (i.e., HostName) is now " & hostessKid buttons {"groovy", "not impressed"} default button "groovy"
 	
 else
-	display alert "Okay, then.  We'll stay as we are and won't change the name.  Good times!" buttons {"Gotcha"} giving up after 5
+	display alert "Okay, then.  We'll stay as we are and won't change the name.  Good times!  Hold on while we take some inventory information.  This information will go into a text file on your desktop." buttons {"Gotcha"} giving up after 5
 end if
 
 --- ### This will change the name of your HD volume to the name of the computer with "HD" tacked on the end
@@ -105,7 +105,7 @@ on error -- for example if LocalHostName is not set
 	set HostName to computer name of (system info)
 end try
 
--- this is so that we can dump the info into a text file on the destkop
+-- this is so that we can dump the info into a text file on the desktop
 -- this is machine technical info for AD and for FABWEB, etc.
 
 set profileName to HostName & "_details.txt"
@@ -116,8 +116,8 @@ set AppleScript's text item delimiters to {": "} --this is what separates a kind
 
 -- Display dialog hardware
 
-set cereal to do shell script "system_profiler SPHardwareDataType | grep 'Serial Number' | awk '{ print $4}'"
-set model to do shell script "system_profiler SPHardwareDataType | grep 'Model Identifier' | awk '{ print $3}'"
+set cereal to do shell script "system_profiler SPHardwareDataType | grep 'Serial Number' | awk '{print $4}'"
+set model to do shell script "system_profiler SPHardwareDataType | grep 'Model Identifier' | awk '{print $3}'"
 set cpu to do shell script "system_profiler SPHardwareDataType | grep 'Processor Name' | awk '{print $3,$4,$5,$6}'"
 set mem to do shell script "system_profiler SPHardwareDataType | grep 'Memory' | awk '{print $2,$3}'"
 set speed to do shell script "system_profiler SPHardwareDataType | grep 'Speed' | awk '{print $3,$4}'"
@@ -243,7 +243,7 @@ try -- this is the beginning of the entire binding process.  The 'end try' is at
 	try
 		if blocko = "" then
 			set reBound to false
-			display dialog "You are not currently bound to an Active Directory." buttons {"Carry on.", "Whatever.", "Up top, Bro!"}
+			display dialog "You are not currently bound to an Active Directory." buttons {"Next Step."}
 		else
 			set reBound to true
 		end if
